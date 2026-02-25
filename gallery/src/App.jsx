@@ -113,7 +113,7 @@ import Axios from 'axios'
 const App = () => {
 
   const [data, setData] = useState([])
-  const [page, setPage] = useState(4)
+  const [page, setPage] = useState(1)
   const limit = 12
 
   const getData = async () => {

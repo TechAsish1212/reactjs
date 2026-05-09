@@ -22,3 +22,15 @@ useCallback is a React Hook that lets you cache a function definition between re
 
 syntax->
 const cachedFn = useCallback(fn, dependencies)
+
+<!-- useEffect -->
+useEffect is a React Hook that lets you synchronize a component with an external system.
+
+syntax->
+useEffect(setup, dependencies?)
+
+<!-- useRef -->
+useRef is a React Hook that lets you reference a value that’s not needed for rendering.
+
+syntax->
+const ref = useRef(initialValue)

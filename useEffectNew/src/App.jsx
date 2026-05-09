@@ -1,121 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useCallback, useState } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+
+  const [length, setLength] = useState(8);
+  const [numberAllowed, setNumberAllowed] = useState(false);
+  const [characterAllowed, setCharacterAlloewd] = useState(false);
+  const [password, setPassword] = useState("")
+
+  const passwordGenerator = useCallback(() => {
+    const pass = "";
+    const str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+    if (numberAllowed) {
+      str += "0123456789";
+    }
+    if (characterAllowed) {
+      str += "~!@#$%^&*()_-+={[}]"
+    }
+
+    for (let index = 1; index <= array.length; index++) {
+      let charGen = Math.floor(Math.random() * str.length() + 1);
+
+      pass = str.charAt(charGen);
+
+      setPassword(pass);
+
+    }
+
+  }, [length, numberAllowed, characterAllowed, setPassword]);
+
+
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-300 to-purple-300 flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl rounded-2xl p-6">
 
-      <div className="ticks"></div>
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent text-center mb-6">
+          Password Generator
+        </h1>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <div className="flex items-center bg-white rounded-xl overflow-hidden shadow-md">
+          <input
+            type="text"
+            value={password}
+            placeholder="Generated Password"
+            readOnly
+            className="w-full px-4 py-3 text-gray-700 outline-none"
+          />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+          <button className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 text-white font-medium px-5 py-3 cursor-pointer">
+            Copy
+          </button>
+        </div>
+        <div className='flex text-sm gap-x-2 py-4'>
+          <div className='flex items-center gap-x-1'>
+            <input
+              type="range"
+              min={6}
+              max={100}
+              value={length}
+              className='cursor-pointer'
+              onChange={(e)=>{setLength(e.target.value)}}
+            />
+            <label className='text-sm text-gray-800'>Length:{length}</label>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
